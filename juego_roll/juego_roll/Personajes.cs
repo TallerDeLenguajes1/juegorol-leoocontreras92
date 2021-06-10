@@ -19,7 +19,8 @@ namespace juego_roll
         private string apodo;
         private DateTime fechaNacimiento;
         private int edad;
-        private int salud;
+
+        private int salud = 100;
 
         private int velocidad;
         private int destresa;
