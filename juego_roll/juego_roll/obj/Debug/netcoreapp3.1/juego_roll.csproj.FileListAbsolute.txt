@@ -4,10 +4,10 @@ E:\Leo\Facultad\Taller1\TPS\juegorol-leoocontreras92\juego_roll\juego_roll\bin\D
 E:\Leo\Facultad\Taller1\TPS\juegorol-leoocontreras92\juego_roll\juego_roll\bin\Debug\netcoreapp3.1\juego_roll.runtimeconfig.dev.json
 E:\Leo\Facultad\Taller1\TPS\juegorol-leoocontreras92\juego_roll\juego_roll\bin\Debug\netcoreapp3.1\juego_roll.dll
 E:\Leo\Facultad\Taller1\TPS\juegorol-leoocontreras92\juego_roll\juego_roll\bin\Debug\netcoreapp3.1\juego_roll.pdb
-E:\Leo\Facultad\Taller1\TPS\juegorol-leoocontreras92\juego_roll\juego_roll\obj\Debug\netcoreapp3.1\juego_roll.csprojAssemblyReference.cache
 E:\Leo\Facultad\Taller1\TPS\juegorol-leoocontreras92\juego_roll\juego_roll\obj\Debug\netcoreapp3.1\juego_roll.AssemblyInfoInputs.cache
 E:\Leo\Facultad\Taller1\TPS\juegorol-leoocontreras92\juego_roll\juego_roll\obj\Debug\netcoreapp3.1\juego_roll.AssemblyInfo.cs
 E:\Leo\Facultad\Taller1\TPS\juegorol-leoocontreras92\juego_roll\juego_roll\obj\Debug\netcoreapp3.1\juego_roll.csproj.CoreCompileInputs.cache
 E:\Leo\Facultad\Taller1\TPS\juegorol-leoocontreras92\juego_roll\juego_roll\obj\Debug\netcoreapp3.1\juego_roll.dll
 E:\Leo\Facultad\Taller1\TPS\juegorol-leoocontreras92\juego_roll\juego_roll\obj\Debug\netcoreapp3.1\juego_roll.pdb
 E:\Leo\Facultad\Taller1\TPS\juegorol-leoocontreras92\juego_roll\juego_roll\obj\Debug\netcoreapp3.1\juego_roll.genruntimeconfig.cache
+E:\Leo\Facultad\Taller1\TPS\juegorol-leoocontreras92\juego_roll\juego_roll\obj\Debug\netcoreapp3.1\juego_roll.csproj.AssemblyReference.cache
