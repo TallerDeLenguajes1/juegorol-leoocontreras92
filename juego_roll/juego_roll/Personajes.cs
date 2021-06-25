@@ -1,20 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace juego_roll
 {
-    enum tipoPersonaje
+   /* enum tipoPersonaje
     {
         humano,
         orco,
         elfo,
         enano,
         hobbit
+    }*/ 
+
+
+    public class ListadoRazas
+    {
+        [JsonPropertyName("index")]
+        public string Indice { get; set; }
+
+        [JsonPropertyName("name")]
+        public string Nombre { get; set; }
+
+        [JsonPropertyName("url")]
+        public string Url { get; set; }
+
+    }
+
+    public class Razas
+    {
+        [JsonPropertyName("count")]
+        public int Contar { get; set; }
+
+        [JsonPropertyName("results")]
+        public List<ListadoRazas> Resultados { get; set; }
     }
     public class Personaje
     {
-        private tipoPersonaje tipo;
+        private string tipo;
         private string nombre;
         private string apodo;
         private DateTime fechaNacimiento;
@@ -43,12 +67,16 @@ namespace juego_roll
         public int Armadura { get => armadura; set => armadura = value; }
         public int PoderDeDisparo { get => poderDeDisparo; set => poderDeDisparo = value; }
         public int PoderDeDefensa { get => poderDeDefensa; set => poderDeDefensa = value; }
-        internal tipoPersonaje Tipo { get => tipo; set => tipo = value; }
+        public string Tipo { get => tipo; set => tipo = value; }
+
+
 
         public void AtaqueDefensa()
         {
             PoderDeDisparo = Destresa * Fuerza * Nivel;
             PoderDeDefensa = Armadura * Velocidad;
         }
+
     }
+
 }

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Text.Json;
 
 namespace juego_roll
 {
@@ -8,7 +11,6 @@ namespace juego_roll
 
         static void Main(string[] args)
         {
-
             CreadorDePersonajes creador = new CreadorDePersonajes();
             List<Personaje> ListaPersonajes = new List<Personaje>();
             Combate batalla = new Combate();
@@ -17,15 +19,25 @@ namespace juego_roll
             int ataques = 3;
             char opcion;
 
+            List<string> listaRazas =  ApiRazas();
+
             do
             {
                 Console.WriteLine("Ingrese un personaje");
-                Personaje nuevoPersonaje = creador.CrearPersonaje();
+                Personaje nuevoPersonaje = creador.CrearPersonaje(listaRazas);
                 ListaPersonajes.Add(nuevoPersonaje);
+               
                 Console.WriteLine("Desea ingresar otro personaje? s/n");
                 Console.WriteLine("\n");
                 opcion = Convert.ToChar(Console.Read());
                 Console.ReadLine();
+
+                if(opcion=='n' && ListaPersonajes.Count < 2)//controla que haya al menos 2 personajes
+                {
+                    Console.WriteLine("\nDebe ingresar al menos 2 personajes para realizar los combates");
+                    opcion = 's';
+                    Console.WriteLine("\n");
+                }
 
             } while (opcion != 'n');
 
@@ -36,7 +48,6 @@ namespace juego_roll
                 funcion.MostrarCaracteristicasDePersonaje(personaje);
             }
 
-            // pelea de personajes (Falta construir metodo)
 
             lista = funcion.listarNombres(ListaPersonajes);
             while (ListaPersonajes.Count > 1)
@@ -65,7 +76,7 @@ namespace juego_roll
 
                 for (int i = 0; i < ataques; i++)
                 {
-                    Console.WriteLine("Ronda " + i + 1 + "...");
+                    Console.WriteLine("Ronda " + (i + 1) + "...");
                     if (ListaPersonajes[personaje01].Salud > 0 && ListaPersonajes[personaje02].Salud > 0)
                     {
                         batalla.Batalla(ListaPersonajes, personaje01, personaje02);
@@ -86,11 +97,61 @@ namespace juego_roll
             Console.WriteLine("El ganador del juego es: " + ListaPersonajes[0].Nombre);
             Console.WriteLine("\n-------------------------------------\n");
 
+            //GuardarGanador("archivo", ".csv", ListaPersonajes[0]);
+
         }
 
+        public static List<string> ApiRazas()
+        {
+            var url = $"https://www.dnd5eapi.co/api/races/";
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "GET";
+            request.ContentType = "application/json";
+            request.Accept = "application/json";
 
+            List<string> lista = new List<string>();
 
+            try
+            {
+                using (WebResponse response = request.GetResponse())
+                {
+                    using (Stream strReader = response.GetResponseStream())
+                    {
+                        if (strReader == null) return lista;
+                        using (StreamReader objReader = new StreamReader(strReader))
+                        {
+                            string responseBody = objReader.ReadToEnd();
+                            Razas nuevaRazas = JsonSerializer.Deserialize<Razas>(responseBody);
 
+                            foreach(ListadoRazas a in nuevaRazas.Resultados)
+                            {
+                                lista.Add(a.Nombre);
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch
+            {
+
+            }
+            return lista;
+        }
+
+        /*public static void GuardarGanador(string nombreArchivo, string formato, Personaje personaje)
+        {
+            FileStream miArchivo = new FileStream(nombreArchivo + formato,FileMode.Create);
+            using (StreamWriter writer = new StreamWriter(miArchivo))
+            {
+                writer.WriteLine("{0};{1};{2}", personaje.Nombre, personaje.Tipo, personaje.Salud);
+                writer.Close();
+            }
+        }*/
 
     }
+
+
+
 }
+

@@ -1,34 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.IO;
+using System.Net;
+using System.Text.Json;
 
 namespace juego_roll
 {
     class CreadorDePersonajes
     {
-        public Personaje CrearPersonaje()
+        public Personaje CrearPersonaje(List<string>lista)
         {
-
-
+            int control = 1;
             Random random = new Random();
             Personaje personaje = new Personaje();
-
-            
-            //personaje.Apodo = "leo1";
-            //personaje.FechaNacimiento = DateTime.Now;
+            personaje.Apodo = "jugador"; // apodo predeterminado para verificar funcionamiento
+            //personaje.FechaNacimiento = DateTime.Now; //utlilizo fecha actual para verificar funcionamiento
 
             Console.WriteLine("Ingrese Nombre");
             personaje.Nombre = Console.ReadLine();
-            Console.WriteLine("Ingrese Apodo");
-            personaje.Apodo = Console.ReadLine();
-            Console.WriteLine("Ingrese Fecha");
-            string fecha = Console.ReadLine();
-            personaje.FechaNacimiento = DateTime.Parse(fecha);
+
+            //Console.WriteLine("Ingrese Apodo");
+            //personaje.Apodo = Console.ReadLine(); // carga de apodo por teclado
+
+            do //control de fechas
+            {
+                Console.WriteLine("Ingrese Fecha");
+                string fecha = Console.ReadLine(); // carga fecha por teclado
+                if (DateTime.TryParse(fecha, out DateTime fechaNac))
+                {
+                    personaje.FechaNacimiento = fechaNac;
+                    control = 1;
+                }
+                else
+                {
+                    Console.Write("Error de tipeo");
+                    control = 0;
+
+                }
+            } while (control == 0);
+
             TimeSpan horas = DateTime.Now - personaje.FechaNacimiento;
-            //Console.WriteLine(horas.TotalDays); 
-            personaje.Edad = Convert.ToInt32(horas.TotalDays / 365); //calcula años redpmdps
-            personaje.Tipo = (tipoPersonaje) random.Next(1,5);
-            //personaje.Edad = random.Next(1,301);
+  
+            personaje.Edad = Convert.ToInt32(horas.TotalDays / 365); //calcula años de edad, calcula incorrectamente los meses.
+            personaje.Tipo = lista[random.Next(lista.Count)];
             personaje.Velocidad = random.Next(1,11);
             personaje.Destresa = random.Next(1,11);
             personaje.Fuerza = random.Next(1,11);
@@ -37,5 +51,8 @@ namespace juego_roll
 
             return personaje;
         }
+
+
     }
+    
 }
