@@ -41,7 +41,7 @@ namespace juego_roll
 
             TimeSpan horas = DateTime.Now - personaje.FechaNacimiento;
   
-            personaje.Edad = Convert.ToInt32(horas.TotalDays / 365); //calcula años de edad, calcula incorrectamente los meses.
+            personaje.Edad = Convert.ToInt32(horas.Days / 365); //calcula años de edad, calcula incorrectamente los meses.
             personaje.Tipo = lista[random.Next(lista.Count)];
             personaje.Velocidad = random.Next(1,11);
             personaje.Destresa = random.Next(1,11);

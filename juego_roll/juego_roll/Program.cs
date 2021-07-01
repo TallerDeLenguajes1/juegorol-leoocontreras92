@@ -13,6 +13,8 @@ namespace juego_roll
         {
             CreadorDePersonajes creador = new CreadorDePersonajes();
             List<Personaje> ListaPersonajes = new List<Personaje>();
+            GuardarArchivos guardar = new GuardarArchivos();
+            MostrarArchivos mostrar = new MostrarArchivos();
             Combate batalla = new Combate();
             Metodos funcion = new Metodos();
             string lista;
@@ -26,7 +28,8 @@ namespace juego_roll
                 Console.WriteLine("Ingrese un personaje");
                 Personaje nuevoPersonaje = creador.CrearPersonaje(listaRazas);
                 ListaPersonajes.Add(nuevoPersonaje);
-               
+                guardar.Guardar("participantes", ".csv", nuevoPersonaje);
+
                 Console.WriteLine("Desea ingresar otro personaje? s/n");
                 Console.WriteLine("\n");
                 opcion = Convert.ToChar(Console.Read());
@@ -97,7 +100,14 @@ namespace juego_roll
             Console.WriteLine("El ganador del juego es: " + ListaPersonajes[0].Nombre);
             Console.WriteLine("\n-------------------------------------\n");
 
-            //GuardarGanador("archivo", ".csv", ListaPersonajes[0]);
+            guardar.Guardar("ganador", ".csv", ListaPersonajes[0]);
+
+            //Falto terminar mostrar
+
+            Console.WriteLine("\nLista de participantes: ");
+            mostrar.Mostrar("participantes", ".csv");
+            Console.WriteLine("\nLista de ganadores: ");
+            mostrar.Mostrar("ganador", ".csv");
 
         }
 
@@ -139,15 +149,7 @@ namespace juego_roll
             return lista;
         }
 
-        /*public static void GuardarGanador(string nombreArchivo, string formato, Personaje personaje)
-        {
-            FileStream miArchivo = new FileStream(nombreArchivo + formato,FileMode.Create);
-            using (StreamWriter writer = new StreamWriter(miArchivo))
-            {
-                writer.WriteLine("{0};{1};{2}", personaje.Nombre, personaje.Tipo, personaje.Salud);
-                writer.Close();
-            }
-        }*/
+
 
     }
 

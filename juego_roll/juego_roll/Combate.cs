@@ -71,16 +71,16 @@ namespace juego_roll
                         ganador.Salud = ganador.Salud + incremento;
                         Console.WriteLine("Salud  " + " (+" + incremento + ")" + ganador.Salud);
                         incremento = random.Next(1, 3);
-                        ganador.Nivel = ganador.Fuerza + incremento;
+                        ganador.Fuerza = ganador.Fuerza + incremento;
                         Console.WriteLine("Fuerza  " + " (+" + incremento + ")" + ganador.Fuerza);
                         incremento = random.Next(1, 3);
-                        ganador.Nivel = ganador.Velocidad + incremento;
+                        ganador.Velocidad = ganador.Velocidad + incremento;
                         Console.WriteLine("Velocidad  " + " (+" + incremento + ")" + ganador.Velocidad);
                         incremento = random.Next(1, 3);
-                        ganador.Nivel = ganador.Destresa + incremento;
+                        ganador.Destresa = ganador.Destresa + incremento;
                         Console.WriteLine("Destreza  " + " (+" + incremento + ")" + ganador.Destresa);
                         incremento = random.Next(1, 3);
-                        ganador.Nivel = ganador.Armadura + incremento;
+                        ganador.Armadura = ganador.Armadura + incremento;
                         Console.WriteLine("Armadura  " + " (+" + incremento + ")" + ganador.Armadura);
                     }
                     else

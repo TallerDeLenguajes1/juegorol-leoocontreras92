@@ -11,7 +11,7 @@ namespace juego_roll
             Console.WriteLine("------Datos de personaje------");
             Console.WriteLine("Nombre del personaje: " + personaje.Nombre);
             Console.WriteLine("Apodo: " + personaje.Apodo);
-            Console.WriteLine("Fecha de nacimiento: " + personaje.FechaNacimiento);
+            Console.WriteLine("Fecha de nacimiento: " + personaje.FechaNacimiento.ToLongDateString());
             Console.WriteLine("Tipo/Raza " + personaje.Tipo);
             Console.WriteLine("Edad: " + personaje.Edad + " años");
             Console.WriteLine("Salud: " + personaje.Salud);
